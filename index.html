@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#4285f4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="電気計算">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>季節指数・入金額計算</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f7fb;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#172033}
+.wrap{max-width:600px;margin:auto;padding:18px 12px}.card{background:white;border-radius:20px;overflow:hidden;box-shadow:0 8px 28px #00000012}
+header{background:#4285f4;color:white;padding:22px}h1{font-size:23px;margin:0 0 5px}header div{font-size:13px;opacity:.9}
+table{width:100%;border-collapse:collapse}th{font-size:12px;color:#6b7482;background:#f8fafc;padding:12px 6px}
+td{border-top:1px solid #edf0f5;padding:8px 6px;text-align:center}.month{font-weight:800}
+input{width:120px;max-width:100%;padding:11px 8px;border:1px solid #ccd5e1;border-radius:10px;text-align:right;font-size:16px}
+.idx{font-size:13px;color:#758091}.winner{background:#fff8df}.winner .month{color:#9b6b00}
+.result{margin:16px;background:#f3faf5;border:1px solid #d8efdf;border-radius:15px;padding:18px}
+.label{font-size:13px;color:#667085}.money{font-size:32px;font-weight:900;color:#14833b;margin-top:4px}
+.detail{margin-top:8px;font-size:14px}.actions{padding:0 16px 16px}button{width:100%;padding:12px;border:0;border-radius:11px;font-weight:700;background:#eef2f7}
+.note{padding:0 16px 20px;font-size:11px;color:#7b8492;line-height:1.6}
+@media(max-width:480px){.wrap{padding:0}.card{border-radius:0;min-height:100vh}input{width:88px}}
+</style></head>
+<body><div class="wrap"><div class="card">
+<header><h1>⚡ 季節指数・入金額計算</h1><div>東京｜追加割引なし</div></header>
+<table><thead><tr><th>月</th><th>実使用量</th><th>季節指数</th><th>係数後</th></tr></thead><tbody id="rows"></tbody></table>
+<div class="result"><div class="label">💰 入ってくる金額（1回のみ）</div><div class="money" id="money">¥0</div>
+<div class="detail" id="detail">使用量を入力してください</div></div>
+<div class="actions"><button onclick="clearAll()">すべてクリア</button></div>
+<div class="note">各月の実使用量に季節指数を掛けた数値を右側に表示。その中で最も高い数値の月を参照し、東京・追加割引なしの単価表から1回分の入金額を表示します。</div>
+</div></div>
+<script>
+const idx=[1.2, 1.1, 1.1, 0.9, 0.9, 0.8, 1, 1.1, 1, 0.8, 1, 1.1], tiers=[{"min": 200, "max": 300, "amount": 3680}, {"min": 300, "max": 400, "amount": 3680}, {"min": 400, "max": 500, "amount": 28760}, {"min": 500, "max": 600, "amount": 35600}, {"min": 600, "max": 700, "amount": 45480}, {"min": 700, "max": 800, "amount": 52320}, {"min": 800, "max": 900, "amount": 59160}, {"min": 900, "max": 1000, "amount": 62960}, {"min": 1000, "max": 1200, "amount": 72840}, {"min": 1200, "max": 1400, "amount": 83480}, {"min": 1400, "max": 1600, "amount": 97160}, {"min": 1600, "max": 1800, "amount": 110840}, {"min": 1800, "max": 2000, "amount": 117680}, {"min": 2000, "max": 2250, "amount": 131360}, {"min": 2250, "max": 2500, "amount": 145040}, {"min": 2500, "max": 2750, "amount": 151880}, {"min": 2750, "max": null, "amount": 165560}];
+const tbody=document.getElementById('rows'), money=document.getElementById('money'), detail=document.getElementById('detail');
+idx.forEach((x,i)=>{let tr=document.createElement('tr');tr.id='row'+i;tr.innerHTML=`<td class="month">${i+1}月</td><td><input id="v${i}" type="number" min="0" inputmode="decimal" placeholder="0" oninput="calc()"> <span class="idx">kWh</span></td><td class="idx">× ${x}</td><td><strong id="a${i}">0</strong> <span class="idx">kWh</span></td>`;tbody.appendChild(tr)})
+function incentive(k){if(k<200)return null;let t=tiers.find(x=>k>=x.min&&(x.max===null||k<x.max));return t?t.amount:null}
+function calc(){let best=null;idx.forEach((x,i)=>{document.getElementById('row'+i).classList.remove('winner');let raw=parseFloat(document.getElementById('v'+i).value);let adjusted=isNaN(raw)?0:Math.round(raw*x);document.getElementById('a'+i).textContent=adjusted.toLocaleString();if(!isNaN(raw)&&(best===null||adjusted>best.adjusted))best={i,raw,adjusted}});if(!best){money.textContent='¥0';detail.textContent='使用量を入力してください';return}document.getElementById('row'+best.i).classList.add('winner');let a=incentive(best.adjusted);money.textContent=a===null?'—':'¥'+a.toLocaleString();detail.textContent=`参照月：${best.i+1}月（係数後 ${best.adjusted.toLocaleString()} kWh）`;}
+function clearAll(){idx.forEach((_,i)=>document.getElementById('v'+i).value='');calc()}
+if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
+</script></body></html>
