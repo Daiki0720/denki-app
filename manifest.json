@@ -1,11 +1,11 @@
 {
-  "name": "季節指数・入金額計算",
-  "short_name": "電気計算",
+  "name": "dinova POWER CALCULATOR",
+  "short_name": "POWER CALC",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f4f7fb",
-  "theme_color": "#4285f4",
+  "background_color": "#07111f",
+  "theme_color": "#07111f",
   "icons": [
     {
       "src": "icon-192.png",
