@@ -1,11 +1,11 @@
 {
-  "name": "dinova POWER CALCULATOR",
-  "short_name": "POWER CALC",
+  "name": "電気使用量計算",
+  "short_name": "電気計算",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#07111f",
-  "theme_color": "#07111f",
+  "background_color": "#f8fbfe",
+  "theme_color": "#0868d7",
   "icons": [
     {
       "src": "icon-192.png",

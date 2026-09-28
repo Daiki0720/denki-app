@@ -1,43 +1,41 @@
 <!doctype html><html lang="ja"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#07111f"><meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="POWER CALC">
+<meta name="theme-color" content="#0868d7"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="電気使用量計算">
 <link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="icon-192.png">
-<title>dinova POWER CALCULATOR</title>
+<title>電気使用量計算</title>
 <style>
-:root{--bg:#07111f;--panel:#0d1a2b;--line:#1c314a;--blue:#3ea6ff;--cyan:#63e6ff;--text:#f7fbff;--muted:#8fa5bd;--gold:#ffc857}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% -10%,#123e68 0,#07111f 38%,#040a12 100%);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);min-height:100vh}
-.app{max-width:620px;margin:auto;padding:env(safe-area-inset-top) 14px calc(28px + env(safe-area-inset-bottom))}
-.hero{padding:28px 5px 18px}.brand{font-size:12px;font-weight:900;letter-spacing:.24em;color:var(--cyan)}h1{font-size:27px;margin:6px 0 5px;letter-spacing:-.03em}.sub{font-size:12px;color:var(--muted)}
-.status{display:flex;gap:8px;margin-top:15px;flex-wrap:wrap}.pill{padding:7px 10px;border:1px solid #20405f;border-radius:999px;background:#0a1726cc;color:#a9c4dd;font-size:11px}
-.panel{background:linear-gradient(180deg,#0e1c2dcc,#091522ee);border:1px solid #19334d;border-radius:22px;overflow:hidden;box-shadow:0 20px 55px #0008, inset 0 1px #ffffff0b}
-.head{display:grid;grid-template-columns:44px 1fr 66px 90px;padding:11px 10px;color:#6f8ca8;font-size:10px;font-weight:800;text-align:center;border-bottom:1px solid #17304a}
-.row{display:grid;grid-template-columns:44px 1fr 66px 90px;align-items:center;min-height:58px;padding:5px 10px;border-bottom:1px solid #11283d;transition:.2s}
-.row:last-child{border-bottom:0}.row.winner{background:linear-gradient(90deg,#ffc85712,#3ea6ff16);box-shadow:inset 3px 0 var(--gold)}
-.month{font-weight:900;text-align:center;font-size:14px}.winner .month{color:var(--gold)}
-.inwrap{position:relative}input{width:100%;height:42px;border:1px solid #213d58;border-radius:12px;background:#071320;color:white;font-size:17px;font-weight:800;text-align:right;padding:0 36px 0 8px;outline:none}
-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #3ea6ff1f}.unit{position:absolute;right:8px;top:14px;font-size:9px;color:#6f8ca8}
-.idx{text-align:center;color:#7895b1;font-size:12px}.adj{text-align:right;font-weight:900;color:#cdeaff;font-size:15px}.adj small{font-size:8px;color:#607d98}
-.pay{margin-top:14px;padding:20px;border-radius:22px;background:linear-gradient(135deg,#102238,#0b1929);border:1px solid #275074;box-shadow:0 20px 55px #0006;position:relative;overflow:hidden}
-.pay:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;background:#3ea6ff20;filter:blur(25px);right:-70px;top:-70px}
-.paytop{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}.paylabel{font-size:11px;color:#88a5c0;font-weight:800;letter-spacing:.08em}.badge{font-size:10px;color:#07111f;background:var(--gold);padding:5px 8px;border-radius:8px;font-weight:900}
-.money{font-size:43px;font-weight:950;letter-spacing:-.04em;margin:5px 0;color:white;position:relative;z-index:1;text-shadow:0 0 24px #3ea6ff55}.detail{font-size:12px;color:#8eb0cc;position:relative;z-index:1}
-button{width:100%;margin-top:12px;height:48px;border:1px solid #1b3954;border-radius:15px;background:#0b1928;color:#9eb7cc;font-weight:800;font-size:13px}
-.footer{text-align:center;color:#47647e;font-size:10px;margin-top:16px;line-height:1.6}
-@media(max-width:390px){.app{padding-left:8px;padding-right:8px}.head,.row{grid-template-columns:38px 1fr 54px 82px;padding-left:6px;padding-right:6px}.money{font-size:38px}}
+*{box-sizing:border-box}body{margin:0;background:#eef5fb;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;color:#17324d}
+.app{max-width:600px;margin:auto;min-height:100vh;background:#f8fbfe;box-shadow:0 0 30px #17324d18}
+.hero{background:linear-gradient(135deg,#0756aa,#0b7ee7);color:white;padding:26px 20px 22px;display:flex;align-items:center;gap:14px}
+.logo{width:58px;height:58px;border-radius:16px;background:linear-gradient(145deg,#19c8ff,#0784e9);display:grid;place-items:center;font-size:32px;box-shadow:0 8px 20px #003b7c55}
+h1{font-size:24px;margin:0 0 4px}.sub{font-size:12px;opacity:.88}
+.tabs{margin:14px 14px 8px;background:#e9eef3;border-radius:14px;padding:4px;display:grid;grid-template-columns:1fr 1fr}
+.tab{padding:10px;text-align:center;border-radius:11px;font-size:13px;font-weight:800;color:#64788b}.tab.active{background:#087dea;color:#fff;box-shadow:0 3px 10px #087dea33}
+.table{margin:0 14px;background:#fff;border:1px solid #dce6ef;border-radius:14px;overflow:hidden}
+.head,.row{display:grid;grid-template-columns:46px 1fr 70px 92px;align-items:center;text-align:center}
+.head{background:#edf4f9;font-size:10px;font-weight:800;color:#526b81;min-height:46px}.row{min-height:52px;border-top:1px solid #e6edf3}
+.row.best{background:#fff5cc}.month{font-weight:800;font-size:13px}.best .month{color:#9b6900}
+.inputwrap{position:relative;padding:4px}input{width:100%;height:37px;border:1px solid #d2dce5;border-radius:8px;background:#fff;text-align:right;padding:0 31px 0 6px;font-size:15px;font-weight:700;color:#17324d;outline:none}
+input:focus{border-color:#1688ef;box-shadow:0 0 0 3px #1688ef17}.unit{position:absolute;right:10px;top:17px;font-size:8px;color:#8194a6}.factor{font-size:12px;color:#5d7184}.adjusted{font-size:14px;font-weight:900;color:#17324d}.adjusted small{font-size:8px;color:#8194a6}
+.pay{margin:14px;border:2px solid #efb425;border-radius:16px;background:linear-gradient(180deg,#fffaf0,#fff);overflow:hidden}
+.payhead{background:#fff4d3;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;color:#8b6500;font-weight:900;font-size:14px}
+.badge{background:#d89c00;color:white;padding:5px 9px;border-radius:7px;font-size:10px}.money{font-size:38px;font-weight:950;text-align:center;color:#bd8200;padding:12px 8px 4px}.detail{text-align:center;font-size:11px;color:#7e8790;padding-bottom:13px}
+button{display:block;width:calc(100% - 28px);margin:0 14px 18px;height:48px;border:0;border-radius:13px;background:#087dea;color:white;font-weight:900;font-size:14px;box-shadow:0 7px 18px #087dea2e}
+.note{font-size:10px;color:#8596a5;text-align:center;padding:0 15px 22px;line-height:1.6}
+@media(max-width:390px){.head,.row{grid-template-columns:40px 1fr 58px 84px}.hero{padding-left:15px}h1{font-size:21px}}
 </style></head><body><main class="app">
-<section class="hero"><div class="brand">dinova</div><h1>POWER CALCULATOR ⚡</h1><div class="sub">季節指数 × 媒介インセンティブ 自動計算</div>
-<div class="status"><span class="pill">TOKYO</span><span class="pill">追加割引なし</span><span class="pill">AUTO CALC</span></div></section>
-<section class="panel"><div class="head"><div>MONTH</div><div>実使用量</div><div>INDEX</div><div>係数後</div></div><div id="rows"></div></section>
-<section class="pay"><div class="paytop"><div class="paylabel">ESTIMATED INCENTIVE</div><div class="badge">1回のみ</div></div><div class="money" id="money">¥0</div><div class="detail" id="detail">各月の使用量を入力してください</div></section>
-<button onclick="clearAll()">入力をすべてクリア</button>
-<div class="footer">最高となる係数後kWhを自動参照<br>東京エリア・追加割引なし</div></main>
-<script>
-const idx=[1.2, 1.1, 1.1, 0.9, 0.9, 0.8, 1, 1.1, 1, 0.8, 1, 1.1],tiers=[{"min": 200, "max": 300, "amount": 3680}, {"min": 300, "max": 400, "amount": 3680}, {"min": 400, "max": 500, "amount": 28760}, {"min": 500, "max": 600, "amount": 35600}, {"min": 600, "max": 700, "amount": 45480}, {"min": 700, "max": 800, "amount": 52320}, {"min": 800, "max": 900, "amount": 59160}, {"min": 900, "max": 1000, "amount": 62960}, {"min": 1000, "max": 1200, "amount": 72840}, {"min": 1200, "max": 1400, "amount": 83480}, {"min": 1400, "max": 1600, "amount": 97160}, {"min": 1600, "max": 1800, "amount": 110840}, {"min": 1800, "max": 2000, "amount": 117680}, {"min": 2000, "max": 2250, "amount": 131360}, {"min": 2250, "max": 2500, "amount": 145040}, {"min": 2500, "max": 2750, "amount": 151880}, {"min": 2750, "max": null, "amount": 165560}],rows=document.getElementById('rows'),money=document.getElementById('money'),detail=document.getElementById('detail');
-idx.forEach((x,i)=>{const r=document.createElement('div');r.className='row';r.id='row'+i;r.innerHTML=`<div class="month">${i+1}月</div><div class="inwrap"><input id="v${i}" type="number" min="0" inputmode="decimal" oninput="calc()" placeholder="0"><span class="unit">kWh</span></div><div class="idx">× ${x}</div><div class="adj"><span id="a${i}">0</span> <small>kWh</small></div>`;rows.appendChild(r)})
-function incentive(k){if(k<200)return null;const t=tiers.find(x=>k>=x.min&&(x.max===null||k<x.max));return t?t.amount:null}
-function calc(){let best=null;idx.forEach((x,i)=>{const row=document.getElementById('row'+i);row.classList.remove('winner');const raw=parseFloat(document.getElementById('v'+i).value);const a=isNaN(raw)?0:Math.round(raw*x);document.getElementById('a'+i).textContent=a.toLocaleString();if(!isNaN(raw)&&(best===null||a>best.a))best={i,raw,a}});if(!best){money.textContent='¥0';detail.textContent='各月の使用量を入力してください';return}document.getElementById('row'+best.i).classList.add('winner');const p=incentive(best.a);money.textContent=p===null?'—':'¥'+p.toLocaleString();detail.textContent=`基準月 ${best.i+1}月 ｜ 係数後 ${best.a.toLocaleString()} kWh`;}
+<header class="hero"><div class="logo">⚡</div><div><h1>電気使用量計算</h1><div class="sub">季節指数対応・入金額シミュレーター</div></div></header>
+<div class="tabs"><div class="tab active">12か月入力</div><div class="tab">東京・割引なし</div></div>
+<section class="table"><div class="head"><div>月</div><div>実使用量<br>(kWh)</div><div>季節指数</div><div>係数後<br>(kWh)</div></div><div id="rows"></div></section>
+<section class="pay"><div class="payhead"><span>👑 入金額（1回のみ）</span><span class="badge" id="monthBadge">基準月 —</span></div><div class="money" id="money">0円</div><div class="detail" id="detail">各月の使用量を入力してください</div></section>
+<button onclick="clearAll()">↻　入力をクリア</button>
+<div class="note">東京エリア・追加割引なしの単価表を使用<br>係数後の使用量が最も高い月を自動で参照します</div>
+</main><script>
+const idx=[1.2, 1.1, 1.1, 0.9, 0.9, 0.8, 1, 1.1, 1, 0.8, 1, 1.1],tiers=[{"min": 200, "max": 300, "amount": 3680}, {"min": 300, "max": 400, "amount": 3680}, {"min": 400, "max": 500, "amount": 28760}, {"min": 500, "max": 600, "amount": 35600}, {"min": 600, "max": 700, "amount": 45480}, {"min": 700, "max": 800, "amount": 52320}, {"min": 800, "max": 900, "amount": 59160}, {"min": 900, "max": 1000, "amount": 62960}, {"min": 1000, "max": 1200, "amount": 72840}, {"min": 1200, "max": 1400, "amount": 83480}, {"min": 1400, "max": 1600, "amount": 97160}, {"min": 1600, "max": 1800, "amount": 110840}, {"min": 1800, "max": 2000, "amount": 117680}, {"min": 2000, "max": 2250, "amount": 131360}, {"min": 2250, "max": 2500, "amount": 145040}, {"min": 2500, "max": 2750, "amount": 151880}, {"min": 2750, "max": null, "amount": 165560}],rows=document.getElementById('rows'),money=document.getElementById('money'),detail=document.getElementById('detail'),monthBadge=document.getElementById('monthBadge');
+idx.forEach((f,i)=>{let r=document.createElement('div');r.className='row';r.id='row'+i;r.innerHTML=`<div class="month">${i+1}月</div><div class="inputwrap"><input id="v${i}" type="number" min="0" inputmode="decimal" oninput="calc()" placeholder="0"><span class="unit">kWh</span></div><div class="factor">${f}</div><div class="adjusted"><span id="a${i}">0</span> <small>kWh</small></div>`;rows.appendChild(r)})
+function incentive(k){if(k<200)return null;let t=tiers.find(x=>k>=x.min&&(x.max===null||k<x.max));return t?t.amount:null}
+function calc(){let best=null;idx.forEach((f,i)=>{let r=document.getElementById('row'+i);r.classList.remove('best');let raw=parseFloat(document.getElementById('v'+i).value),a=isNaN(raw)?0:Math.round(raw*f);document.getElementById('a'+i).textContent=a.toLocaleString();if(!isNaN(raw)&&(best===null||a>best.a))best={i,a}});if(!best){money.textContent='0円';detail.textContent='各月の使用量を入力してください';monthBadge.textContent='基準月 —';return}document.getElementById('row'+best.i).classList.add('best');let p=incentive(best.a);money.textContent=p===null?'対象外':p.toLocaleString()+'円';monthBadge.textContent='基準月 '+(best.i+1)+'月';detail.textContent='係数後 '+best.a.toLocaleString()+' kWh を参照';}
 function clearAll(){idx.forEach((_,i)=>document.getElementById('v'+i).value='');calc()}
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
 </script></body></html>
